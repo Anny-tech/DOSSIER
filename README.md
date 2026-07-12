@@ -50,10 +50,10 @@ pytest -q                   # 31 tests, all offline
 pip install -e ".[data,llm,retrieval,web]"
 ```
 
-## Reasoning from uploaded papers (RAG, not fine-tuning)
+## Reasoning from uploaded papers (using RAG)
 
 Users can upload papers and have the generator reason from their content. This
-is **retrieval-augmented**, not fine-tuning: documents are chunked, embedded, and
+is **retrieval-augmented**, not finetuned: documents are chunked, embedded, and
 stored at upload; at query time the most relevant passages are retrieved and
 handed to the generator **as evidence with provenance**. The model's weights are
 never modified, so every claim remains traceable to a source passage — which is
