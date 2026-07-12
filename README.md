@@ -6,7 +6,7 @@ This project extends **[QSPHAgents](https://github.com/sbanik2/QSPHAgents)**, th
 
 > **Status:** research build. The DOS-feature layer, physics-critic, generator–critic loop, and enrichment-evaluation harness are implemented and tested (31 tests, all passing, offline). The LLM generator, Materials Project / 3DSC data access, RAG retrieval, and web app are structured but require credentials / external packages to run — they are **not** faked; stubs raise clear errors rather than returning fabricated data.
 
-## The contribution, and the referee question it answers
+## The contribution
 
 **Q: If you already compute N(E_F) and the van Hove structure to run the critic, what does the LLM add?**
 
@@ -61,9 +61,7 @@ exactly what keeps the physics-critic's grounding meaningful.
 
 The critic still has the final say: if an uploaded paper *claims* a van Hove
 singularity at E_F but the material's computed DOS contradicts it, the critic
-rejects the hypothesis. Evidence informs reasoning; physics decides. (This is
-why RAG, not LoRA: fine-tuning would dissolve the source text into weights,
-destroying the provenance the critic depends on.)
+rejects the hypothesis. Evidence informs reasoning; physics decides.
 
 ## Layout
 
