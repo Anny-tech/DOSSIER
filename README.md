@@ -1,6 +1,6 @@
-# QSPH — physics-critic-gated structure→property hypothesis generation
+# QSPH — physics critic gated structure-property hypothesis generation
 
-**A generator–physics-critic agent that produces physically-falsifiable hypotheses about DOS-linked material properties, gating LLM analogy-based reasoning against computed and literature DOS evidence.**
+A generator physics critic agent that produces physically-falsifiable hypotheses about DOS-linked material properties, gating LLM analogy-based reasoning against computed and literature DOS evidence.**
 
 This project extends **[QSPHAgents](https://github.com/sbanik2/QSPHAgents)**, the 2025 LLM-hackathon prototype by Suvo Banik, Ankita Biswas, Huanhuan Zhao, and Collin Kovacs. That prototype introduced the generator–critic idea for qualitative DOS reasoning; QSPH turns it into a rigorous, evaluable method by replacing the LLM-only critic with a **deterministic physics-critic** and sharpening the target to **property-relevant DOS features**.
 
