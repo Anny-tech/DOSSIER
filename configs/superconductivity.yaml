@@ -1,0 +1,49 @@
+# Superconductivity arm configuration.
+#
+# These thresholds define what the physics-critic considers a DOS basis for
+# conventional (BCS/electron-phonon) superconductivity favorability. They are
+# deliberately conservative and exposed here (not hidden in code) so that a
+# materials referee can argue with each number and so studies can report the
+# exact values used.
+#
+# Physical rationale:
+#   n_ef_high / n_ef_low   : bands for qualitative N(E_F). Units states/eV/cell.
+#                            Higher N(E_F) -> stronger electron-phonon coupling.
+#   van_hove_window_ev     : a DOS peak within this energy of E_F counts as a
+#                            van Hove singularity "near E_F". 0.15 eV is tight
+#                            enough to be meaningful, loose enough for real DFT
+#                            grid resolution.
+#   metal_n_ef_threshold   : below this N(E_F) with a gap => insulating.
+#   asymmetry_significant  : |asymmetry| above this is a real valence/conduction
+#                            skew (used by the thermoelectric arm).
+
+arm: superconductivity
+
+thresholds:
+  n_ef_high: 1.0
+  n_ef_low: 0.3
+  van_hove_window_ev: 0.15
+  metal_n_ef_threshold: 0.05
+  asymmetry_significant: 0.1
+
+# Feature-extraction parameters (passed to compute_dos_features).
+features:
+  asymmetry_window_ev: 1.0
+  peak_search_window_ev: 2.0
+  gap_threshold: 0.05
+  gap_probe_window_ev: 0.3
+  min_peak_prominence: 0.1
+
+# Loop budget: max critic-driven revisions before the loop reports an honest
+# "could not produce a physically-supported hypothesis".
+loop:
+  max_revisions: 2
+
+# Validation data sources for this arm.
+validation:
+  ground_truth: 3dsc          # SuperCon-derived T_c labels mapped to MP
+  dos_source: materials_project
+  # Literature DOS is allowed as EVIDENCE for reasoning, but NOT as validation
+  # ground truth for this arm (avoids grading our own extraction).
+  literature_as_evidence: true
+  literature_as_ground_truth: false

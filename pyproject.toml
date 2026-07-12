@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qsph"
+version = "0.1.0"
+description = "Physics-critic-gated structure-to-property hypothesis generation for DOS-linked material properties."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["materials", "density-of-states", "superconductivity", "thermoelectrics", "llm-agents", "physics-informed"]
+
+dependencies = [
+    "numpy>=1.24",
+    "pydantic>=2.6",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Materials Project + 3DSC data access.
+data = ["mp-api>=0.41", "pymatgen>=2024.1"]
+# LLM generator + RAG retrieval.
+llm = ["anthropic>=0.40", "langgraph>=0.2", "langchain>=0.3"]
+retrieval = ["chromadb>=0.5", "sentence-transformers>=3.0"]
+ingest = ["pdfplumber>=0.11", "pymupdf>=1.24", "requests>=2.31"]
+# Web app.
+web = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "python-multipart>=0.0.9"]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qsph"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["SIM108", "UP042"]  # str,Enum is fine and compatible
